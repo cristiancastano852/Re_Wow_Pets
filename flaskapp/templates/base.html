@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% import "bootstrap/wtf.html" as wtf %}
+
+    {% set navigation_bar = [
+        ('/dashboard/', 'dashboard', 'fe fe-home text-primary', 'Dashboard'),
+        ('/customer/', 'customer', 'fe fe-book pink', 'Customer'),
+        ('/project/', 'project', 'fe fe-folder deep-purple', 'Project'),
+        ('/inventory/', 'inventory','fe fe-package green', 'Inventory'),
+        ('/ticket/create', 'ticket', 'fe fe-users red', 'Ticket'),
+        ('/dashboard/refresh/search/', 'refresh', 'fe fe-refresh-ccw green', 'Refresh Algolia')] -%}
+        {% set admin_navigation_bar = [ ('/admin/timesheet/', 'timesheet', 'fe fe-clock text-primary', 'Timesheet') ] -%}
+        {% set active_page = active_page|default('dashboard')
+    -%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re wow</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+</head>
+<body>
+   <!-- SIDEBAR -->
+   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light ">
+       <div class="container-fluid">
+           <!-- Toggler -->
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse"
+               aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+           <!-- User (xs) -->
+           <div class="navbar-user d-md-none ">
+               <!-- Form -->
+               <form class="form-inline  w-100" action="/dashboard/search/" method="POST">
+                   <div class="input-group input-group-flush input-group-merge">
+                       <input id="search" type="search"
+                           class="form-control form-control-prepended  dropdown-toggle search" data-toggle="dropdown"
+                           placeholder="Search" aria-label="Search" v-model="query" ref="searchQuery" class="prompt"
+                           type="text" name="searchterm" placeholder="" autocomplete="off" spellcheck="false">
+                       <div class="input-group-prepend">
+                           <div class="input-group-text">
+                               <span class="fe fe-search"></span>
+                           </div>
+                       </div>
+                   </div>
+               </form>
+               <!-- Dropdown -->
+               <div class="dropdown">
+                   <!-- Toggle -->
+                   <a href="#!" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                       <div class="avatar avatar-sm">
+                           
+                                   <span
+                                       class="avatar-title rounded-circle bg-primary">asdasd
+                                   </span>
+                       </div>
+                   </a>
+                   <!-- Menu -->
+                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+                       <a href="/settings/profile/" class="dropdown-item">Profile</a>
+                       <a href="/settings/manage/" class="dropdown-item">Settings</a>
+                       <a href="" class="dropdown-item">Help</a>
+                       <a href="/logout" class="dropdown-item">Logout</a>
+                   </div>
+               </div>
+           </div>
+           <!-- Collapse -->
+           <div class="collapse navbar-collapse" id="sidebarCollapse">
+               <!-- Navigation -->
+               <ul id="navigation" class="navbar-nav">
+                      
+
+
+                   <a class="navbar-brand pt-2" href="asdasd">
+                   </a>
+                   {% for href, id, icon, caption in navigation_bar %}
+                   <li class="nav-item">
+                       <a {% if id==active_page %} class="nav-link active" {% else %} class="nav-link" {% endif %}
+                           href="{{ href|e }}">
+                           <i class="{{ icon|e }}"></i>{{ caption|e }}</a>
+                   </li>
+                   {% endfor %}
+               </ul>
+           </div>
+           <div class="custom-control custom-switch">
+               <input type="checkbox" class="custom-control-input" id="activate_hootsi_helper" name="activate_hootsi_helper">
+               <label class="custom-control-label" for ="activate_hootsi_helper">Hootsi Helper</label>
+           </div>
+       </div>
+   </nav>
+   <!-- MAIN CONTENT -->
+   <div class="main-content">
+       <!-- TOPBAR -->
+       <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex">
+           <div class="container-fluid justify-content-end">
+               <!-- Form -->
+               <form class="form-inline d-flex w-100 mr-4" action="/dashboard/search/" method="POST">
+                   <div class="input-group input-group-flush input-group-merge w-100">
+                       <input id="search" type="search"
+                           class="form-control form-control-prepended  dropdown-toggle search" data-toggle="dropdown"
+                           placeholder="Search" aria-label="Search" v-model="query" ref="searchQuery" class="prompt"
+                           type="text" name="searchterm" placeholder="" autocomplete="off">
+                       <div class="input-group-prepend">
+                           <div class="input-group-text">
+                               <span class="fe fe-search"></span>
+                           </div>
+                       </div>
+                   </div>
+               </form>
+               <div class="navbar-user">
+                   <div class="dropdown">
+                       <a href="#" class="avatar avatar-sm dropdown-toggle" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                           <div class="avatar avatar-sm">
+                           </div>
+                       </a>
+                       <div class="dropdown-menu dropdown-menu-right">
+                          <a href="/settings/profile/" class="dropdown-item"><span
+                                   class="fe fe-user mr-2"></span>Profile</a>
+                           <a href="/settings/manage/" class="dropdown-item"><span
+                                   class="fe fe-settings mr-2"></span>Settings</a>
+                           <a href="/settings/admin/" class="dropdown-item"><span
+                                   class="fe fe-calendar mr-2"></span>Admin</a>
+                           <a href="/logout" class="dropdown-item"><span class="fe fe-log-out mr-2"></span>Logout</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </nav>
+       <div>
+           {% block content %} {% endblock %}
+       </div>
+   </div>
+        <script src="{{ url_for('static',filename='libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

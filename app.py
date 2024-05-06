@@ -1,9 +1,15 @@
-import flaskapp
+from flask_sqlalchemy import SQLAlchemy
+from flaskapp import create_app
+from flaskapp.model.model_cloud import db
 import config
 import unittest
 
 
-app = flaskapp.create_app(config)
+
+
+app = create_app(config)
+app.config.from_pyfile('../config.py')
+db.init_app(app)
 
 @app.cli.command()
 def test(input=True):
