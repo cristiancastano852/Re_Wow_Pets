@@ -5,11 +5,12 @@ import config
 import unittest
 
 
-
-
 app = create_app(config)
 app.config.from_pyfile('../config.py')
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 db.init_app(app)
+
 
 @app.cli.command()
 def test(input=True):
@@ -23,6 +24,7 @@ def test(input=True):
     """
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner().run(tests)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081, debug=True)
