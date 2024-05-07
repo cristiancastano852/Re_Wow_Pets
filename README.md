@@ -1,5 +1,9 @@
 # RE WOW PETS
-
+- ## Autor:
+  Cristian Alexander Castaño Montoya
+  
+  [<img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin">](https://www.linkedin.com/in/cristiancastano852/)
+  
 This application has been developed using Python, Flask, SQLAlchemy (ORM), HTML, Jinja2, CSS, and Bootstrap. The database used is PostgreSQL, and deployment has been done on Supabase.
 
 ## ER MODEL
@@ -19,5 +23,7 @@ This application has been developed using Python, Flask, SQLAlchemy (ORM), HTML,
 
 1. Clone this repository to your local machine.
 2. Install project dependencies by running `pip install -r requirements.txt`.
-3. Set up the PostgreSQL database and update the application configuration in `config.py`.
-4. Run the application by executing `flask run` in your terminal.
+3. Run the application by executing `flask run` in your terminal.
+
+## 02. SOFTWARE DESIGN CHALLENGE
+The solution for point 02 can be found in the attached [ pdf 02. SOFTWARE DESIGN CHALLENGE](https://github.com/cristiancastano852/Re_Wow_Pets/blob/main/02.%20SOFTWARE%20DESIGN%20CHALLENGE.pdf)
