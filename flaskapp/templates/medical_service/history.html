@@ -2,30 +2,49 @@
 {% block inventory_content %}
    
 <div class="col-12" style="height: 100vh;">
-    <div class="row" style="height: 100%;">
-        <div class="col-6" style="height: 100%;">
-            <div class="green-border card text-white" style="height: 100%; background-color: #65BA69;">
-                <h1 class="text-center">{{ pet.name }}</h1>
-            <div class="d-flex flex-column">
-                <div class="d-flex justify-content-center">
-                    <p class="mr-2 mb-0">Tipo:</p>
-                    <h6 class="mb-0">{{ pet.type }}</h6>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <p class="mr-2 mb-0">Size:</p>
-                    <h6 class="mb-0">{{ pet.size }}</h6>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <p class="mr-2 mb-0">Owner:</p>
-                    <h6 class="mb-0">{{ pet.owner.name }}</h6>
+    <div class="row h-100">
+        <div class="col-6 d-flex align-items-center justify-content-start">
+            <div class="green-border card text-white p-5" style="background-color: #65BA69; height: 100vh; width: 300px;">
+                <h1 class="text-center mb-4">{{ pet.name }}</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="mb-0">Tipo:</p>
+                        <h6>{{ pet.type }}</h6>
+                    </div>
+                    <div>
+                        <p class="mb-0">Size:</p>
+                        <h6>{{ pet.size }}</h6>
+                    </div>
+                    <div>
+                        <p class="mb-0">Owner:</p>
+                        <h6>{{ pet.owner.name }}</h6>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-6" style="height: 100%;">
-            <div class="green-border card" style="height: 100%;">
-                <h1>HISTORIA {{pet.name}}</h1>
+        <div class="col-6" style="height: 100%; margin-left: -200px;">
+            <div class="green-border card h-100 pt-5">
+                <h1 class="text-center">Historia de {{ pet.name }}</h1>
+                {% if history %}
+                <ul class="list-group">
+                        {% for appointment in history %}
+                            <li class="list-group-item">
+                                <small class="text-muted">{{ appointment.created_date.strftime('%Y-%m-%d') }} | </small>
+                                {{ appointment.type.value }} - {{ appointment.description }}
+                            </li>
+                        {% endfor %}
+                    
+                </ul>
+                {% else %}
+                        <li class="list-group-item">
+                            No hay historial disponible. ¡Puedes crear una cita ahora mismo!
+                        </li>
+                {% endif %}
             </div>
         </div>
+        
+        
+        
     </div>
 </div>
 

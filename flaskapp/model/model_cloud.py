@@ -62,7 +62,8 @@ class Vaccination(db.Model):
     pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
     number = db.Column(db.Integer)
     type = db.Column(db.String(100))
-    date = db.Column(db.DateTime)
+    date = db.Column(db.DateTime, nullable=False,
+                     default=db.func.current_timestamp())
 
     pet = db.relationship('Pet', primaryjoin=pet_id ==
                           Pet.id, backref='vaccinations')
@@ -78,9 +79,20 @@ class MedicalService(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
     type = db.Column(db.Enum(Type_Service))
-    created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime)
+    created_date = db.Column(db.DateTime, nullable=False,
+                             default=db.func.current_timestamp())
+    updated_date = db.Column(db.DateTime, nullable=False,
+                             default=db.func.current_timestamp())
     description = db.Column(db.String(255))
 
     pet = db.relationship('Pet', primaryjoin=pet_id ==
                           Pet.id, backref='medical_services')
+
+    def create(data):
+        medical_service = MedicalService(**data)
+        db.session.add(medical_service)
+        db.session.commit()
+        return medical_service
+
+    def get_data_with_pet_id(pet_id):
+        return MedicalService.query.filter_by(pet_id=pet_id).all()
