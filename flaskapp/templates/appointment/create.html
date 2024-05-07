@@ -1,0 +1,24 @@
+{% extends "appointment/layout.html" %}
+{% block inventory_content %}
+   
+<div class="col-12 pt-5" style="height: 100vh;">
+    <h1>Crear Cita Médica</h1>
+    <form method="post" action="/medical-service/appointment">
+        <div class="form-group">
+            <label for="type">Tipo de Servicio:</label>
+            <select class="form-control" id="type" name="type">
+                <option value="Medical_Appointment">Cita Médica</option>
+                <option value="Vaccination_Appointment">Cita de Vacunación</option>
+                <option value="Deworming_Appointment">Cita de Desparasitación</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Pet Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #65BA69;
+            color: white; 
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #65BA69;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            border: none; 
+            border-bottom: 1px solid white; 
+            background-color: transparent; 
+            color: white; 
+        }
+        .btn-primary {
+            background-color: white; 
+            color: #65BA69; 
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Create Pet</h2>
+        <form action="/pets" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Fish">Fish</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="size">Size:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="size" id="sizeSmall" value="Small">
+                    <label class="form-check-label" for="sizeSmall">Small</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="size" id="sizeMedium" value="Medium">
+                    <label class="form-check-label" for="sizeMedium">Medium</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="size" id="sizeBig" value="Big">
+                    <label class="form-check-label" for="sizeBig">Big</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Inicio</button> <!-- Cambiar el texto del botón a "Inicio" -->
+        </form>
+    </div>
+</body>
+</html>

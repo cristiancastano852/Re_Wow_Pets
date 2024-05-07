@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos CSS personalizados -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white" style="background-color: #7AC943 !important;">Inicio de Sesión</div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="username" placeholder="Ingresa tu nombre de usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+                        </div>
+                        <a href="/pets" class="btn btn-primary btn-block">Iniciar Sesión</a>
+                        <p class="text-muted">Puedes ingresar con cualquier correo y contraseña, vista en desarrollo...</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<style>
+    body {
+    background-color: #65BA69;
+}
+
+.card {
+    margin-top: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #7AC943;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #7AC943;
+    border-color: #0062cc;
+}
+
+</style>
+</html>
